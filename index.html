@@ -4,77 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>商品リスト</title>
-    <style>
-        body {
-            background: linear-gradient(to bottom, #d0f0ff, #e0ffc0);
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        .image {
-            width: 80px;
-            height: 80px;
-            background: blue;
-            border-radius: 5px;
-        }
-        .content {
-            flex-grow: 1;
-            background: #f0f0f0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .title {
-            color: red;
-            font-weight: bold;
-        }
-        .price {
-            color: green;
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        .description {
-            color: purple;
-            margin-top: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <div class="item">
-            <div class="image"></div>
-            <div class="content">
-                <div class="title">商品タイトル1</div>
-                <div class="description">商品説明文がここに入ります。</div>
-                <div class="price">￥1,000</div>
+            <div class="image-box"></div>
+            <div class="text-box">
+                <div class="title">商品タイトル</div>
+                <div class="description">商品説明がここに入ります。</div>
+                <div class="price">¥9,999</div>
             </div>
         </div>
         <div class="item">
-            <div class="image"></div>
-            <div class="content">
-                <div class="title">商品タイトル2</div>
-                <div class="description">商品説明文がここに入ります。</div>
-                <div class="price">￥2,000</div>
+            <div class="image-box"></div>
+            <div class="text-box">
+                <div class="title">商品タイトル</div>
+                <div class="description">商品説明がここに入ります。</div>
+                <div class="price">¥9,999</div>
             </div>
         </div>
         <div class="item">
-            <div class="image"></div>
-            <div class="content">
-                <div class="title">商品タイトル3</div>
-                <div class="description">商品説明文がここに入ります。</div>
-                <div class="price">￥3,000</div>
+            <div class="image-box"></div>
+            <div class="text-box">
+                <div class="title">商品タイトル</div>
+                <div class="description">商品説明がここに入ります。</div>
+                <div class="price">¥9,999</div>
             </div>
         </div>
     </div>

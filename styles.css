@@ -1,11 +1,16 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    height: 100vh; /* 画面全体をカバー */
     background: linear-gradient(to bottom, #d0f0ff, #d0ffb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
     width: 80%;
+    max-width: 800px;
     margin: 30px auto;
 }
 

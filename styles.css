@@ -1,11 +1,32 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    height: 100vh; /* 画面全体をカバー */
+    height: 100vh;
     background: linear-gradient(to bottom, #d0f0ff, #d0ffb3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.header {
+    position: relative;
+    width: 100%;
+    height: 250px; /* ヘッダー画像の高さ */
+    overflow: hidden;
+}
+
+.header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 画像を全体にフィット */
+}
+
+.header-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 文字に影をつける */
 }
 
 .container {

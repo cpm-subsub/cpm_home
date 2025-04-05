@@ -179,5 +179,37 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </div>
 
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const firstModal = document.getElementById("firstModal");
+  const firstBtn = document.getElementById("first-button");
+  const firstClose = document.getElementById("firstClose");
+  const firstSubmitBtn = document.getElementById("firstSubmitBtn");
+
+  // ボタンを押したらモーダル表示
+  firstBtn.addEventListener("click", () => {
+    firstModal.style.display = "flex";
+  });
+
+  // 閉じる処理
+  firstClose.addEventListener("click", () => {
+    firstModal.style.display = "none";
+  });
+
+  // モーダル外をクリックしたら閉じる
+  window.addEventListener("click", (event) => {
+    if (event.target === firstModal) {
+      firstModal.style.display = "none";
+    }
+  });
+
+  // 送信ボタン押下時（ダミー処理）
+  firstSubmitBtn.addEventListener("click", () => {
+    alert("送信されました！（ダミー）");
+    firstModal.style.display = "none";
+  });
+});
+</script>
+
 </body>
 </html>

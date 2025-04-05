@@ -48,8 +48,12 @@ body {
 .product img {
     width: 150px;
     height: 150px;
-    object-fit: cover;
+    object-fit: contain; /* 画像の縦横比を保持して全体を収める */
+    background-color: black; /* 余白部分を黒にする */
+    margin-right: 15px;
+    border-radius: 5px; /* 任意：角丸にしたくなければ消してOK */
 }
+
 
 
 .product-info {

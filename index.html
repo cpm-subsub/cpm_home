@@ -264,15 +264,13 @@
 
           if (!res.ok) throw new Error("Webhook送信失敗");
 
-          alert("ニックネーム送信完了！");
-          firstModal.style.display = "none";
-          nicknameInput.value = "";
-        } catch (err) {
-          console.error(err);
-          alert("送信に失敗しました！");
-        }
-      });
-    });
+alert("ニックネーム送信完了！");
+firstModal.style.display = "none";
+nicknameInput.value = "";
+
+// ← これでローカル保存されます！
+localStorage.setItem("nickname", nickname);
+
     </script>
     <!-- index.html の一番下、</body> の直前がベスト！ -->
 <script>

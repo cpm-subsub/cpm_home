@@ -29,7 +29,7 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 20px;
-    max-width: 1200px;
+    max-width: 90%; /* 幅を広げる */
     margin: auto;
 }
 
@@ -41,7 +41,9 @@ body {
     overflow: hidden;
     padding: 15px;
     align-items: center;
+    flex-wrap: nowrap; /* アイテムが縦に並ばないようにする */
 }
+
 
 .product img {
     width: 150px;

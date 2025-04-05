@@ -93,12 +93,18 @@
             <span id="closeBtn" class="close">&times;</span>
             <h2 id="modal-title">商品名</h2>
             <p id="modal-price">価格: ¥</p>
-            <p>送金用リンク（PayPayなど）</p>
-            <input type="text" id="paylink" placeholder="https://paypay.ne.jp/...">
-            <br><br>
-            <button id="sendBtn" class="buy-button">送信</button>
-        </div>
-    </div>
+            <p>送金用リンク（PayPay）</p>
+<input type="text" id="paylink" placeholder="https://paypay.ne.jp/...">
+
+<p>ゲームタグ</p>
+<input type="text" id="gametag" placeholder="例: #ABC12345">
+
+<p>愛言葉</p>
+<input type="text" id="secretword" placeholder="あなたの愛言葉">
+
+<br><br>
+<button id="sendBtn" class="buy-button">送信</button>
+
 
     <!-- 固定ボタン -->
     <button id="first-button">まずはここ！</button>
@@ -169,51 +175,57 @@
       };
 
       sendBtn.onclick = async () => {
-        if (!selectedProduct) return;
-        const paylink = paylinkInput.value.trim();
-        if (!paylink) {
-          alert("リンクを入力してください！");
-          return;
-        }
+  if (!selectedProduct) return;
 
-        const payload = {
-  embeds: [
-    {
-      title: "🛒 購入依頼通知",
-      color: 0x5cd65c, // 黄緑っぽい色
-      fields: [
-        {
-          name: "📦 商品名",
-          value: `\`${selectedProduct.title}\``
-        },
-        {
-          name: "💰 金額",
-          value: `\`${selectedProduct.price}\``
-        },
-        {
-          name: "🔗 送金リンク",
-          value: paylink
-        }
-      ],
-      timestamp: new Date().toISOString()
-    }
-  ]
+  const nickname = localStorage.getItem("nickname") || "";
+  if (!nickname) {
+    alert("『まずはここ！』からニックネームの登録を行ってから再度お願いします。");
+    modal.style.display = "none";
+    return;
+  }
+
+  const paylink = document.getElementById("paylink").value.trim();
+  const gametag = document.getElementById("gametag").value.trim();
+  const secretword = document.getElementById("secretword").value.trim();
+
+  if (!paylink || !gametag || !secretword) {
+    alert("すべてのフォームを入力してください！");
+    return;
+  }
+
+  const payload = {
+    embeds: [
+      {
+        title: "🛒 購入依頼通知",
+        color: 0x5cd65c,
+        fields: [
+          { name: "📛 ニックネーム", value: `\`${nickname}\`` },
+          { name: "📦 商品名", value: `\`${selectedProduct.title}\`` },
+          { name: "💰 金額", value: `\`${selectedProduct.price}\`` },
+          { name: "🎮 ゲームタグ", value: gametag },
+          { name: "🔐 愛言葉", value: secretword },
+          { name: "🔗 送金リンク", value: paylink }
+        ],
+        timestamp: new Date().toISOString()
+      }
+    ]
+  };
+
+  try {
+    const webhookURL = "https://discord.com/api/webhooks/xxxxxxxxxxxxxxxxxx"; // 差し替えてね
+    await fetch(webhookURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    alert("送信しました！");
+    modal.style.display = "none";
+  } catch (e) {
+    console.error(e);
+    alert("送信に失敗しました！");
+  }
 };
 
-        try {
-          const webhookURL = "https://discord.com/api/webhooks/1357979247045513256/LmGof6L_UyBoTEI-r9KSzP9guAe-PBI_GEeTYwBBftpArDXPe0ye8MWJGzUyzvyqkkRe";
-          await fetch(webhookURL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-          });
-          alert("送信しました！");
-          modal.style.display = "none";
-        } catch (e) {
-          console.error(e);
-          alert("送信に失敗しました！");
-        }
-      };
 
       firstBtn.addEventListener("click", () => {
         firstModal.style.display = "flex";

@@ -87,3 +87,21 @@ body {
         grid-template-columns: 1fr; /* スマホでは1列表示 */
     }
 }
+
+.buy-button {
+    background-color: #b9f78e; /* 黄緑 */
+    color: #333;
+    border: none;
+    padding: 10px 18px;
+    margin-left: 15px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+.buy-button:hover {
+    background-color: #a3eb71;
+    transform: scale(1.05);
+}

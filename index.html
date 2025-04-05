@@ -102,6 +102,44 @@
 <p>愛言葉</p>
 <input type="text" id="secretword" placeholder="あなたの愛言葉">
 
+
+<div id="extra-fields">
+  <!-- メッキ -->
+  <div id="mekki-fields" style="display: none;">
+    <p>メッキの度合い</p>
+    <select id="mekki-level">
+      <option value="">選択してください</option>
+      <option value="強">強</option>
+      <option value="通常">通常</option>
+      <option value="弱">弱</option>
+    </select>
+    <p>車種</p>
+    <input type="text" id="mekki-car" placeholder="例: クラウン">
+  </div>
+
+  <!-- キャンバー -->
+  <div id="camber-fields" style="display: none;">
+    <p>角度</p>
+    <input type="text" id="camber-angle" placeholder="例: -10°">
+    <p>車種</p>
+    <input type="text" id="camber-car" placeholder="例: スープラ">
+  </div>
+
+  <!-- 馬力 -->
+  <div id="horsepower-fields" style="display: none;">
+    <p>馬力</p>
+    <input type="text" id="horsepower-value" placeholder="例: 1500">
+    <p>車種</p>
+    <input type="text" id="horsepower-car" placeholder="例: RX-7">
+  </div>
+
+  <!-- ID変更 -->
+  <div id="idchange-fields" style="display: none;">
+    <p>変更後のID</p>
+    <input type="text" id="idchange-value" placeholder="例: 12345678">
+  </div>
+</div>
+
 <br><br>
 <button id="sendBtn" class="buy-button">送信</button>
             </div>
@@ -166,6 +204,24 @@
           modalPrice.textContent = `価格: ${price}`;
           paylinkInput.value = "";
           modal.style.display = "flex";
+
+            // すべて非表示に
+document.getElementById("mekki-fields").style.display = "none";
+document.getElementById("camber-fields").style.display = "none";
+document.getElementById("horsepower-fields").style.display = "none";
+document.getElementById("idchange-fields").style.display = "none";
+
+// タイトルで判定して表示
+if (title.includes("メッキ")) {
+  document.getElementById("mekki-fields").style.display = "block";
+} else if (title.includes("キャンバー")) {
+  document.getElementById("camber-fields").style.display = "block";
+} else if (title.includes("馬力変更")) {
+  document.getElementById("horsepower-fields").style.display = "block";
+} else if (title.includes("ID変更")) {
+  document.getElementById("idchange-fields").style.display = "block";
+}
+            
         });
       });
 
@@ -196,26 +252,67 @@
     return;
   }
 
+  // ✅ 基本のフィールド
+  const fields = [
+    { name: "📛 ニックネーム", value: `\`${nickname}\`` },
+    { name: "📦 商品名", value: `\`${selectedProduct.title}\`` },
+    { name: "💰 金額", value: `\`${selectedProduct.price}\`` },
+    { name: "🎮 ゲームタグ", value: gametag },
+    { name: "🔐 愛言葉", value: secretword },
+    { name: "🔗 送金リンク", value: paylink }
+  ];
+
+  // ✅ メッキ
+  if (document.getElementById("mekki-fields").style.display !== "none") {
+    const level = document.getElementById("mekki-level").value;
+    const car = document.getElementById("mekki-car").value.trim();
+    if (level && car) {
+      fields.push({ name: "🪞 メッキ度合い", value: level });
+      fields.push({ name: "🚗 車種（メッキ）", value: car });
+    }
+  }
+
+  // ✅ キャンバー
+  if (document.getElementById("camber-fields").style.display !== "none") {
+    const angle = document.getElementById("camber-angle").value.trim();
+    const car = document.getElementById("camber-car").value.trim();
+    if (angle && car) {
+      fields.push({ name: "📐 キャンバー角度", value: angle });
+      fields.push({ name: "🚗 車種（キャンバー）", value: car });
+    }
+  }
+
+  // ✅ 馬力
+  if (document.getElementById("horsepower-fields").style.display !== "none") {
+    const hp = document.getElementById("horsepower-value").value.trim();
+    const car = document.getElementById("horsepower-car").value.trim();
+    if (hp && car) {
+      fields.push({ name: "🏎️ 馬力", value: hp });
+      fields.push({ name: "🚗 車種（馬力）", value: car });
+    }
+  }
+
+  // ✅ ID変更
+  if (document.getElementById("idchange-fields").style.display !== "none") {
+    const newid = document.getElementById("idchange-value").value.trim();
+    if (newid) {
+      fields.push({ name: "🆔 変更後ID", value: newid });
+    }
+  }
+
   const payload = {
     embeds: [
       {
         title: "🛒 購入依頼通知",
         color: 0x5cd65c,
-        fields: [
-          { name: "📛 ニックネーム", value: `\`${nickname}\`` },
-          { name: "📦 商品名", value: `\`${selectedProduct.title}\`` },
-          { name: "💰 金額", value: `\`${selectedProduct.price}\`` },
-          { name: "🎮 ゲームタグ", value: gametag },
-          { name: "🔐 愛言葉", value: secretword },
-          { name: "🔗 送金リンク", value: paylink }
-        ],
+        fields: fields,
         timestamp: new Date().toISOString()
       }
     ]
   };
 
   try {
-    const webhookURL = "https://discord.com/api/webhooks/1357979247045513256/LmGof6L_UyBoTEI-r9KSzP9guAe-PBI_GEeTYwBBftpArDXPe0ye8MWJGzUyzvyqkkRe"; // 差し替えてね
+    const webhookURL = "https://discord.com/api/webhooks/1357979247045513256/LmGof6L_UyBoTEI-r9KSzP9guAe-PBI_GEeTYwBBftpArDXPe0ye8MWJGzUyzvyqkkRe";
     await fetch(webhookURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -228,6 +325,7 @@
     alert("送信に失敗しました！");
   }
 };
+
 
 
       firstBtn.addEventListener("click", () => {

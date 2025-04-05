@@ -49,9 +49,8 @@ body {
     width: 150px;
     height: 150px;
     object-fit: cover;
-    background: blue;
-    margin-right: 15px;
 }
+
 
 .product-info {
     flex: 1;

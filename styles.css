@@ -183,3 +183,39 @@ body {
     background-color: #a3eb71;
     transform: scale(1.05);
 }
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* 緑の送信ボタン */
+.green-submit {
+  background-color: #b9f78e;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.2s;
+}
+
+.green-submit:hover {
+  background-color: #a3eb71;
+  transform: scale(1.05);
+}

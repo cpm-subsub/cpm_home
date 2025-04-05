@@ -166,5 +166,18 @@ document.addEventListener("DOMContentLoaded", () => {
     <!-- 右上の固定ボタン -->
 <button id="first-button">まずはここ！</button>
 
+    <!-- 「まずはここ！」用モーダル -->
+<div id="firstModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="firstClose">&times;</span>
+    <h2>ニックネームを入力してください</h2>
+    <input type="text" id="nickname" placeholder="ニックネーム (本名はやめてください)" style="width: 100%; padding: 10px; margin-top: 10px; margin-bottom: 20px;">
+
+    <p style="font-size: 12px; color: #555;">サポート:<br>ディスコード: <br>LINEオプチャ:</p>
+
+    <button class="green-submit" id="firstSubmitBtn">送信</button>
+  </div>
+</div>
+
 </body>
 </html>

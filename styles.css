@@ -9,7 +9,7 @@ body {
 .hero {
     width: 100%;
     height: 200px;
-    background-image: url('header-image.jpg');
+    background-image: url('images/cpm_silva.png');
     background-size: cover;
     background-position: center;
     display: flex;

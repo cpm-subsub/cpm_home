@@ -150,5 +150,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+    <!-- モーダル（ポップアップ） -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span id="closeBtn" class="close">&times;</span>
+    <h2 id="modal-title">商品名</h2>
+    <p id="modal-price">価格: ¥</p>
+    <p>送金用リンク（PayPayなど）</p>
+    <input type="text" id="paylink" placeholder="https://paypay.ne.jp/..." />
+    <br><br>
+    <button id="sendBtn" class="buy-button">送信</button>
+  </div>
+</div>
+
 </body>
 </html>

@@ -73,3 +73,9 @@ body {
     color: green;
     font-weight: bold;
 }
+
+@media (max-width: 768px) {
+    .product-container {
+        grid-template-columns: 1fr; /* スマホでは1列表示 */
+    }
+}

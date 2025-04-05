@@ -211,5 +211,73 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const firstBtn = document.getElementById("firstStartBtn");
+  const firstModal = document.getElementById("firstModal");
+  const closeFirstBtn = document.getElementById("firstCloseBtn");
+  const firstSubmitBtn = document.getElementById("firstSubmitBtn");
+  const nicknameInput = document.getElementById("nicknameInput");
+
+  firstBtn.addEventListener("click", () => {
+    firstModal.style.display = "flex";
+  });
+
+  closeFirstBtn.addEventListener("click", () => {
+    firstModal.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === firstModal) {
+      firstModal.style.display = "none";
+    }
+  });
+
+  firstSubmitBtn.addEventListener("click", async () => {
+    const nickname = nicknameInput.value.trim();
+
+    if (!nickname) {
+      alert("ニックネームを入力してください！");
+      return;
+    }
+
+    const payload = {
+      embeds: [
+        {
+          title: "🚀 ニックネーム登録通知",
+          color: 0x5cd65c,
+          fields: [
+            {
+              name: "📛 ニックネーム",
+              value: `\`${nickname}\``
+            }
+          ],
+          timestamp: new Date().toISOString()
+        }
+      ]
+    };
+
+    try {
+      const webhookURL = "https://discord.com/api/webhooks/1357979180867911861/BHDfPbyrTmfqc-dM2gak7Dq8X3h3mCsqH7pDB7OeRWzDkDqNxJRyVKOZwTIwUvDnPqns"; // 差し替えてね！
+      const res = await fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) throw new Error("Webhook送信失敗");
+
+      alert("ニックネーム送信完了！");
+      firstModal.style.display = "none";
+      nicknameInput.value = "";
+    } catch (err) {
+      console.error(err);
+      alert("送信に失敗しました！");
+    }
+  });
+});
+</script>
+</body>
+
 </body>
 </html>

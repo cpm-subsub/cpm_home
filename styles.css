@@ -41,8 +41,13 @@ body {
     overflow: hidden;
     padding: 15px;
     align-items: center;
-    flex-wrap: nowrap; /* アイテムが縦に並ばないようにする */
+    transition: transform 0.2s ease; /* ← アニメーション効果 */
 }
+
+.product:hover {
+    transform: scale(1.03); /* ← 少し大きくする */
+}
+
 
 
 .product img {

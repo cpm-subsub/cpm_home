@@ -257,5 +257,28 @@
       });
     });
     </script>
+    <!-- index.html の一番下、</body> の直前がベスト！ -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const supportBtn = document.getElementById("support-button");
+    const supportModal = document.getElementById("supportModal");
+    const supportClose = document.getElementById("supportClose");
+
+    supportBtn.addEventListener("click", () => {
+      supportModal.style.display = "flex";
+    });
+
+    supportClose.addEventListener("click", () => {
+      supportModal.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === supportModal) {
+        supportModal.style.display = "none";
+      }
+    });
+  });
+</script>
+
 </body>
 </html>

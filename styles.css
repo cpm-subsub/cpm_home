@@ -1,79 +1,73 @@
 body {
     margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
-    height: 100vh;
-    background: linear-gradient(to bottom, #d0f0ff, #d0ffb3);
+    background: linear-gradient(to bottom, #cceeff, #ccffcc);
+    min-height: 100vh;
 }
 
-.header {
-    position: relative;
+.hero {
     width: 100%;
-    height: 250px; /* ヘッダー画像の高さ */
-    overflow: hidden;
-}
-
-.header img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 画像を全体にフィット */
-}
-
-.header-title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 48px;
-    font-weight: bold;
-    color: white;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* 文字に影をつける */
-}
-
-.container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 30px auto;
-}
-
-.item {
+    height: 200px;
+    background-image: url('header-image.jpg');
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
-    background: white;
-    padding: 20px;
-    margin-bottom: 25px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    text-align: center;
 }
 
-.image-box {
+.hero h1 {
+    color: white;
+    font-size: 48px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.product {
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 15px;
+    align-items: center;
+}
+
+.product img {
     width: 150px;
     height: 150px;
+    object-fit: cover;
     background: blue;
-    border-radius: 5px;
+    margin-right: 15px;
 }
 
-.text-box {
-    flex-grow: 1;
-    background: #f0f0f0;
-    padding: 15px;
-    margin-left: 20px;
+.product-info {
+    flex: 1;
+    background: #f5f5f5;
+    padding: 10px;
     border-radius: 5px;
 }
 
 .title {
     color: red;
-    font-size: 22px;
     font-weight: bold;
 }
 
 .description {
     color: purple;
-    font-size: 16px;
-    margin: 10px 0;
 }
 
 .price {
     color: green;
-    font-size: 18px;
     font-weight: bold;
 }

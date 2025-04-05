@@ -219,3 +219,58 @@ body {
   background-color: #a3eb71;
   transform: scale(1.05);
 }
+#support-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #b9f78e;
+  color: #333;
+  border: none;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+  z-index: 999;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+.modal-content a {
+  display: block;
+  margin-top: 10px;
+  color: #337ab7;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+

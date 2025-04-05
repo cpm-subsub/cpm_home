@@ -14,6 +14,7 @@
     </header>
     <main>
         <div class="product-container">
+            <!-- 商品1 -->
             <div class="product">
                 <img src="images/2.jpg" alt="商品画像">
                 <div class="product-info">
@@ -23,6 +24,7 @@
                 </div>
                 <button class="buy-button">購入</button>
             </div>
+            <!-- 商品2 -->
             <div class="product">
                 <img src="images/21.jpg" alt="商品画像">
                 <div class="product-info">
@@ -32,6 +34,7 @@
                 </div>
                 <button class="buy-button">購入</button>
             </div>
+            <!-- 商品3 -->
             <div class="product">
                 <img src="images/6.jpg" alt="商品画像">
                 <div class="product-info">
@@ -41,6 +44,7 @@
                 </div>
                 <button class="buy-button">購入</button>
             </div>
+            <!-- 商品4 -->
             <div class="product">
                 <img src="placeholder.jpg" alt="商品画像">
                 <div class="product-info">
@@ -50,15 +54,17 @@
                 </div>
                 <button class="buy-button">購入</button>
             </div>
+            <!-- 商品5 -->
             <div class="product">
                 <img src="images/1.jpg" alt="商品画像">
                 <div class="product-info">
                     <h2 class="title">メッキ</h2>
-                    <p class="description">車両メッキ、ホイールメッキ、窓メッキ、ライトメッキ、キャリパーメッキどれか一つとなります。　複数やりたい方はその数分購入お願いします。</p>
+                    <p class="description">各種メッキどれか一つとなります。複数ご希望の場合はその分購入をお願いします。</p>
                     <p class="price">¥50</p>
                 </div>
                 <button class="buy-button">購入</button>
             </div>
+            <!-- 商品6 -->
             <div class="product">
                 <img src="images/4.jpg" alt="商品画像">
                 <div class="product-info">
@@ -68,6 +74,7 @@
                 </div>
                 <button class="buy-button">購入</button>
             </div>
+            <!-- 商品7 -->
             <div class="product">
                 <img src="images/3.jpg" alt="商品画像">
                 <div class="product-info">
@@ -79,254 +86,145 @@
             </div>
         </div>
     </main>
+
+    <!-- 購入用モーダル -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeBtn" class="close">&times;</span>
+            <h2 id="modal-title">商品名</h2>
+            <p id="modal-price">価格: ¥</p>
+            <p>送金用リンク（PayPayなど）</p>
+            <input type="text" id="paylink" placeholder="https://paypay.ne.jp/...">
+            <br><br>
+            <button id="sendBtn" class="buy-button">送信</button>
+        </div>
+    </div>
+
+    <!-- 右上固定ボタン -->
+    <button id="first-button">まずはここ！</button>
+
+    <!-- ニックネーム登録モーダル -->
+    <div id="firstModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="firstClose">&times;</span>
+            <h2>ニックネームを入力してください</h2>
+            <input type="text" id="nickname" placeholder="ニックネーム (本名はやめてください)" style="width: 100%; padding: 10px; margin-top: 10px; margin-bottom: 20px;">
+            <button class="green-submit" id="firstSubmitBtn">送信</button>
+        </div>
+    </div>
+
+    <!-- スクリプトまとめてここに -->
     <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("modal");
-  const closeBtn = document.getElementById("closeBtn");
-  const sendBtn = document.getElementById("sendBtn");
-  const modalTitle = document.getElementById("modal-title");
-  const modalPrice = document.getElementById("modal-price");
-  const paylinkInput = document.getElementById("paylink");
+    document.addEventListener("DOMContentLoaded", () => {
+      const modal = document.getElementById("modal");
+      const closeBtn = document.getElementById("closeBtn");
+      const sendBtn = document.getElementById("sendBtn");
+      const modalTitle = document.getElementById("modal-title");
+      const modalPrice = document.getElementById("modal-price");
+      const paylinkInput = document.getElementById("paylink");
+      const firstModal = document.getElementById("firstModal");
+      const firstBtn = document.getElementById("first-button");
+      const firstClose = document.getElementById("firstClose");
+      const firstSubmitBtn = document.getElementById("firstSubmitBtn");
+      const nicknameInput = document.getElementById("nickname");
 
-  let selectedProduct = null;
+      let selectedProduct = null;
 
-  // 全ての購入ボタンにイベントをつける
-  document.querySelectorAll(".buy-button").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const product = btn.closest(".product");
-      const title = product.querySelector(".title").textContent;
-      const price = product.querySelector(".price").textContent;
+      document.querySelectorAll(".buy-button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const product = btn.closest(".product");
+          const title = product.querySelector(".title").textContent;
+          const price = product.querySelector(".price").textContent;
 
-      selectedProduct = { title, price };
-      modalTitle.textContent = title;
-      modalPrice.textContent = `価格: ${price}`;
-      paylinkInput.value = "";
-
-      modal.style.display = "flex";
-    });
-  });
-
-  // 閉じるボタン
-  closeBtn.onclick = () => {
-    modal.style.display = "none";
-  };
-
-  // モーダル外をクリックして閉じる
-  window.onclick = (event) => {
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
-  };
-
-  // 送信ボタン押下時
-  sendBtn.onclick = async () => {
-    if (!selectedProduct) return;
-
-    const paylink = paylinkInput.value.trim();
-    if (!paylink) {
-      alert("リンクを入力してください！");
-      return;
-    }
-
-    const payload = {
-      content: `🛒 新しい購入リクエスト\n\n**商品名:** ${selectedProduct.title}\n**金額:** ${selectedProduct.price}\n**送金リンク:** ${paylink}`
-    };
-
-    try {
-      const webhookURL = "https://discord.com/api/webhooks/ここにURL"; // ← 差し替えてね
-      await fetch(webhookURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+          selectedProduct = { title, price };
+          modalTitle.textContent = title;
+          modalPrice.textContent = `価格: ${price}`;
+          paylinkInput.value = "";
+          modal.style.display = "flex";
+        });
       });
 
-      alert("送信しました！");
-      modal.style.display = "none";
-    } catch (e) {
-      console.error(e);
-      alert("送信に失敗しました！");
-    }
-  };
-});
-</script>
+      closeBtn.onclick = () => modal.style.display = "none";
+      firstClose.onclick = () => firstModal.style.display = "none";
 
-    <!-- モーダル（ポップアップ） -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span id="closeBtn" class="close">&times;</span>
-    <h2 id="modal-title">商品名</h2>
-    <p id="modal-price">価格: ¥</p>
-    <p>送金用リンク（PayPayなど）</p>
-    <input type="text" id="paylink" placeholder="https://paypay.ne.jp/..." />
-    <br><br>
-    <button id="sendBtn" class="buy-button">送信</button>
-  </div>
-</div>
+      window.onclick = (event) => {
+        if (event.target === modal) modal.style.display = "none";
+        if (event.target === firstModal) firstModal.style.display = "none";
+      };
 
-    <!-- 右上の固定ボタン -->
-<button id="first-button">まずはここ！</button>
-
-    <!-- 「まずはここ！」用モーダル -->
-<div id="firstModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="firstClose">&times;</span>
-    <h2>ニックネームを入力してください</h2>
-    <input type="text" id="nickname" placeholder="ニックネーム (本名はやめてください)" style="width: 100%; padding: 10px; margin-top: 10px; margin-bottom: 20px;">
-
-    <p style="font-size: 12px; color: #555;">サポート:<br>ディスコード: <br>LINEオプチャ:</p>
-
-    <button class="green-submit" id="firstSubmitBtn">送信</button>
-  </div>
-</div>
-
-    <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const firstModal = document.getElementById("firstModal");
-  const firstBtn = document.getElementById("first-button");
-  const firstClose = document.getElementById("firstClose");
-  const firstSubmitBtn = document.getElementById("firstSubmitBtn");
-
-  // ボタンを押したらモーダル表示
-  firstBtn.addEventListener("click", () => {
-    firstModal.style.display = "flex";
-  });
-
-  // 閉じる処理
-  firstClose.addEventListener("click", () => {
-    firstModal.style.display = "none";
-  });
-
-  // モーダル外をクリックしたら閉じる
-  window.addEventListener("click", (event) => {
-    if (event.target === firstModal) {
-      firstModal.style.display = "none";
-    }
-  });
-
-<!-- HTMLの続きに貼ってOK -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  // 購入処理
-  const modal = document.getElementById("modal");
-  const closeBtn = document.getElementById("closeBtn");
-  const sendBtn = document.getElementById("sendBtn");
-  const modalTitle = document.getElementById("modal-title");
-  const modalPrice = document.getElementById("modal-price");
-  const paylinkInput = document.getElementById("paylink");
-  let selectedProduct = null;
-
-  document.querySelectorAll(".buy-button").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const product = btn.closest(".product");
-      const title = product.querySelector(".title").textContent;
-      const price = product.querySelector(".price").textContent;
-
-      selectedProduct = { title, price };
-      modalTitle.textContent = title;
-      modalPrice.textContent = `価格: ${price}`;
-      paylinkInput.value = "";
-      modal.style.display = "flex";
-    });
-  });
-
-  closeBtn.onclick = () => modal.style.display = "none";
-  window.onclick = (event) => {
-    if (event.target === modal) modal.style.display = "none";
-  };
-
-  sendBtn.onclick = async () => {
-    if (!selectedProduct) return;
-
-    const paylink = paylinkInput.value.trim();
-    if (!paylink) {
-      alert("リンクを入力してください！");
-      return;
-    }
-
-    const payload = {
-      content: `🛒 新しい購入リクエスト\n\n**商品名:** ${selectedProduct.title}\n**金額:** ${selectedProduct.price}\n**送金リンク:** ${paylink}`
-    };
-
-    try {
-      const webhookURL = "https://discord.com/api/webhooks/1357979247045513256/LmGof6L_UyBoTEI-r9KSzP9guAe-PBI_GEeTYwBBftpArDXPe0ye8MWJGzUyzvyqkkRe"; // 差し替え
-      await fetch(webhookURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      alert("送信しました！");
-      modal.style.display = "none";
-    } catch (e) {
-      console.error(e);
-      alert("送信に失敗しました！");
-    }
-  };
-
-  // 「まずはここ！」処理
-  const firstModal = document.getElementById("firstModal");
-  const firstBtn = document.getElementById("first-button");
-  const firstClose = document.getElementById("firstClose");
-  const firstSubmitBtn = document.getElementById("firstSubmitBtn");
-  const nicknameInput = document.getElementById("nickname"); // ←ここ修正
-
-  firstBtn.addEventListener("click", () => {
-    firstModal.style.display = "flex";
-  });
-
-  firstClose.addEventListener("click", () => {
-    firstModal.style.display = "none";
-  });
-
-  window.addEventListener("click", (event) => {
-    if (event.target === firstModal) {
-      firstModal.style.display = "none";
-    }
-  });
-
-  firstSubmitBtn.addEventListener("click", async () => {
-    const nickname = nicknameInput.value.trim();
-    if (!nickname) {
-      alert("ニックネームを入力してください！");
-      return;
-    }
-
-    const payload = {
-      embeds: [
-        {
-          title: "🚀 ニックネーム登録通知",
-          color: 0x5cd65c,
-          fields: [
-            {
-              name: "📛 ニックネーム",
-              value: `\`${nickname}\``
-            }
-          ],
-          timestamp: new Date().toISOString()
+      sendBtn.onclick = async () => {
+        if (!selectedProduct) return;
+        const paylink = paylinkInput.value.trim();
+        if (!paylink) {
+          alert("リンクを入力してください！");
+          return;
         }
-      ]
-    };
 
-    try {
-      const webhookURL = "https://discord.com/api/webhooks/1357979180867911861/BHDfPbyrTmfqc-dM2gak7Dq8X3h3mCsqH7pDB7OeRWzDkDqNxJRyVKOZwTIwUvDnPqns"; // 差し替え
-      const res = await fetch(webhookURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        const payload = {
+          content: `🛒 新しい購入リクエスト\n\n**商品名:** ${selectedProduct.title}\n**金額:** ${selectedProduct.price}\n**送金リンク:** ${paylink}`
+        };
+
+        try {
+          const webhookURL = "https://discord.com/api/webhooks/ここにURL";
+          await fetch(webhookURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          alert("送信しました！");
+          modal.style.display = "none";
+        } catch (e) {
+          console.error(e);
+          alert("送信に失敗しました！");
+        }
+      };
+
+      firstBtn.addEventListener("click", () => {
+        firstModal.style.display = "flex";
       });
 
-      if (!res.ok) throw new Error("Webhook送信失敗");
+      firstSubmitBtn.addEventListener("click", async () => {
+        const nickname = nicknameInput.value.trim();
+        if (!nickname) {
+          alert("ニックネームを入力してください！");
+          return;
+        }
 
-      alert("ニックネーム送信完了！");
-      firstModal.style.display = "none";
-      nicknameInput.value = "";
-    } catch (err) {
-      console.error(err);
-      alert("送信に失敗しました！");
-    }
-  });
-});
-</script>
+        const payload = {
+          embeds: [
+            {
+              title: "\uD83D\uDE80 ニックネーム登録通知",
+              color: 0x5cd65c,
+              fields: [
+                {
+                  name: "\uD83D\uDC9B ニックネーム",
+                  value: `\`${nickname}\``
+                }
+              ],
+              timestamp: new Date().toISOString()
+            }
+          ]
+        };
 
+        try {
+          const webhookURL = "https://discord.com/api/webhooks/ここにURL"; // 差し替えてね！
+          const res = await fetch(webhookURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
 
+          if (!res.ok) throw new Error("Webhook送信失敗");
+
+          alert("ニックネーム送信完了！");
+          firstModal.style.display = "none";
+          nicknameInput.value = "";
+        } catch (err) {
+          console.error(err);
+          alert("送信に失敗しました！");
+        }
+      });
+    });
+    </script>
 </body>
 </html>

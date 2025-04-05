@@ -203,39 +203,88 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 送信ボタン押下時（ダミー処理）
-  firstSubmitBtn.addEventListener("click", () => {
-    alert("送信されました！（ダミー）");
-    firstModal.style.display = "none";
-  });
-});
-</script>
-
-    <script>
+<!-- HTMLの続きに貼ってOK -->
+<script>
 document.addEventListener("DOMContentLoaded", () => {
-  const firstBtn = document.getElementById("firstStartBtn");
+  // 購入処理
+  const modal = document.getElementById("modal");
+  const closeBtn = document.getElementById("closeBtn");
+  const sendBtn = document.getElementById("sendBtn");
+  const modalTitle = document.getElementById("modal-title");
+  const modalPrice = document.getElementById("modal-price");
+  const paylinkInput = document.getElementById("paylink");
+  let selectedProduct = null;
+
+  document.querySelectorAll(".buy-button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const product = btn.closest(".product");
+      const title = product.querySelector(".title").textContent;
+      const price = product.querySelector(".price").textContent;
+
+      selectedProduct = { title, price };
+      modalTitle.textContent = title;
+      modalPrice.textContent = `価格: ${price}`;
+      paylinkInput.value = "";
+      modal.style.display = "flex";
+    });
+  });
+
+  closeBtn.onclick = () => modal.style.display = "none";
+  window.onclick = (event) => {
+    if (event.target === modal) modal.style.display = "none";
+  };
+
+  sendBtn.onclick = async () => {
+    if (!selectedProduct) return;
+
+    const paylink = paylinkInput.value.trim();
+    if (!paylink) {
+      alert("リンクを入力してください！");
+      return;
+    }
+
+    const payload = {
+      content: `🛒 新しい購入リクエスト\n\n**商品名:** ${selectedProduct.title}\n**金額:** ${selectedProduct.price}\n**送金リンク:** ${paylink}`
+    };
+
+    try {
+      const webhookURL = "https://discord.com/api/webhooks/ここにあなたのURL"; // 差し替え
+      await fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      alert("送信しました！");
+      modal.style.display = "none";
+    } catch (e) {
+      console.error(e);
+      alert("送信に失敗しました！");
+    }
+  };
+
+  // 「まずはここ！」処理
   const firstModal = document.getElementById("firstModal");
-  const closeFirstBtn = document.getElementById("firstCloseBtn");
+  const firstBtn = document.getElementById("first-button");
+  const firstClose = document.getElementById("firstClose");
   const firstSubmitBtn = document.getElementById("firstSubmitBtn");
-  const nicknameInput = document.getElementById("nicknameInput");
+  const nicknameInput = document.getElementById("nickname"); // ←ここ修正
 
   firstBtn.addEventListener("click", () => {
     firstModal.style.display = "flex";
   });
 
-  closeFirstBtn.addEventListener("click", () => {
+  firstClose.addEventListener("click", () => {
     firstModal.style.display = "none";
   });
 
-  window.addEventListener("click", (e) => {
-    if (e.target === firstModal) {
+  window.addEventListener("click", (event) => {
+    if (event.target === firstModal) {
       firstModal.style.display = "none";
     }
   });
 
   firstSubmitBtn.addEventListener("click", async () => {
     const nickname = nicknameInput.value.trim();
-
     if (!nickname) {
       alert("ニックネームを入力してください！");
       return;
@@ -258,7 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
-      const webhookURL = "https://discord.com/api/webhooks/1357979180867911861/BHDfPbyrTmfqc-dM2gak7Dq8X3h3mCsqH7pDB7OeRWzDkDqNxJRyVKOZwTIwUvDnPqns"; // 差し替えてね！
+      const webhookURL = "https://discord.com/api/webhooks/ここにあなたのURL"; // 差し替え
       const res = await fetch(webhookURL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -277,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
-</body>
+
 
 </body>
 </html>

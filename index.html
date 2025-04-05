@@ -77,18 +77,76 @@
                 </div>
                 <button class="buy-button">購入</button>
             </div>
-            <!-- ポップアップ用モーダル -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <span id="closeBtn" class="close">&times;</span>
-    <h2 id="modal-title">商品名</h2>
-    <p id="modal-price">価格: ¥</p>
-    <p>送金用リンク（PayPayなど）</p>
-    <input type="text" id="paylink" placeholder="https://paypay.ne.jp/..." />
-    <button id="sendBtn">送信</button>
-  </div>
-</div>
         </div>
     </main>
 </body>
 </html>
+
+<script>
+  const modal = document.getElementById("modal");
+  const closeBtn = document.getElementById("closeBtn");
+  const sendBtn = document.getElementById("sendBtn");
+  const modalTitle = document.getElementById("modal-title");
+  const modalPrice = document.getElementById("modal-price");
+  const paylinkInput = document.getElementById("paylink");
+
+  let selectedProduct = null;
+
+  // 購入ボタンにイベントをつける
+  document.querySelectorAll(".buy-button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const product = btn.closest(".product");
+      const title = product.querySelector(".title").textContent;
+      const price = product.querySelector(".price").textContent;
+
+      selectedProduct = { title, price };
+      modalTitle.textContent = title;
+      modalPrice.textContent = `価格: ${price}`;
+      paylinkInput.value = "";
+
+      modal.style.display = "flex";
+    });
+  });
+
+  // モーダル閉じる
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+
+  // 送信処理
+  sendBtn.onclick = async () => {
+    if (!selectedProduct) return;
+
+    const paylink = paylinkInput.value.trim();
+    if (!paylink) {
+      alert("リンクを入力してください！");
+      return;
+    }
+
+    const payload = {
+      content: `🛒 新しい購入リクエスト\n\n**商品名:** ${selectedProduct.title}\n**金額:** ${selectedProduct.price}\n**送金リンク:** ${paylink}`
+    };
+
+    try {
+      const webhookURL = "https://discord.com/api/webhooks/ここにあなたのURL"; // ここにあなたのWebhook URLを入れてね
+      await fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      alert("送信しました！");
+      modal.style.display = "none";
+    } catch (e) {
+      console.error(e);
+      alert("送信に失敗しました！");
+    }
+  };
+
+  // 背景クリックで閉じる
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>

@@ -134,15 +134,17 @@
   </div>
 
   <!-- ID変更 -->
-  <div id="idchange-fields" style="display: none;">
-    <p>変更後のID</p>
-    <input type="text" id="idchange-value" placeholder="例: 12345678">
-  </div>
+<div id="idchange-fields" style="display: none;">
+  <p>変更後のID</p>
+  <input type="text" id="idchange-value" placeholder="例: 12345678">
+
+  <p>連絡手段</p>
+  <input type="text" id="idchange-contact" placeholder="例: Discord, Twitter など">
+
+  <p>連絡先URL</p>
+  <input type="text" id="idchange-contact-url" placeholder="例: https://discord.com/yourname">
 </div>
 
-<br><br>
-<button id="sendBtn" class="buy-button">送信</button>
-            </div>
         </div> <!-- これで #modal を閉じる -->
 
 
@@ -297,12 +299,22 @@ if (title.includes("メッキ")) {
   }
 
   // ✅ ID変更
-  if (document.getElementById("idchange-fields").style.display !== "none") {
-    const newid = document.getElementById("idchange-value").value.trim();
-    if (newid) {
-      fields.push({ name: "🆔 変更後ID", value: newid });
-    }
+if (document.getElementById("idchange-fields").style.display !== "none") {
+  const newid = document.getElementById("idchange-value").value.trim();
+  const contact = document.getElementById("idchange-contact").value.trim();
+  const url = document.getElementById("idchange-contact-url").value.trim();
+
+  if (newid) {
+    fields.push({ name: "🆔 変更後ID", value: newid });
   }
+  if (contact) {
+    fields.push({ name: "📞 連絡手段", value: contact });
+  }
+  if (url) {
+    fields.push({ name: "🌐 連絡先URL", value: url });
+  }
+}
+
 
   const payload = {
     embeds: [

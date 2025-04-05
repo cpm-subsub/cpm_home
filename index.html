@@ -104,6 +104,7 @@
 
 <br><br>
 <button id="sendBtn" class="buy-button">送信</button>
+            </div>
 
 
     <!-- 固定ボタン -->
@@ -268,6 +269,14 @@ alert("ニックネーム送信完了！");
 firstModal.style.display = "none";
 nicknameInput.value = "";
 localStorage.setItem("nickname", nickname); // ← これで保存！
+                    } catch (err) {
+          console.error(err);
+          alert("送信に失敗しました！");
+        }
+      }); // 👈 ここで firstSubmitBtn のイベントを閉じる
+    }); // 👈 ここで document.addEventListener を閉じる
+</script> <!-- 👈 そして script タグを閉じる -->
+
 
     </script>
     <!-- index.html の一番下、</body> の直前がベスト！ -->

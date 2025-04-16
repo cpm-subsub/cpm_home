@@ -1,4 +1,191 @@
-<!-- すでにページの中身は省略 -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <title>商品一覧ページ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="hero">
+            <h1>商品一覧ページ</h1>
+        </div>
+    </header>
+    <main>
+        <div class="product-container">
+            <!-- 商品1 -->
+            <div class="product">
+                <img src="images/2.jpg" alt="商品画像">
+                <div class="product-info">
+                    <h2 class="title">コイン50万</h2>
+                    <p class="description">課金コインを50万(実質的なカンスト)に設定します。</p>
+                    <p class="price">¥70</p>
+                </div>
+                <button class="buy-button">購入</button>
+            </div>
+            <!-- 商品2 -->
+            <div class="product">
+                <img src="images/21.jpg" alt="商品画像">
+                <div class="product-info">
+                    <h2 class="title">マネー5000万</h2>
+                    <p class="description">マネーを5000万(実質的なカンスト)に設定します。</p>
+                    <p class="price">¥70</p>
+                </div>
+                <button class="buy-button">購入</button>
+            </div>
+            <!-- 商品3 -->
+            <div class="product">
+                <img src="images/6.jpg" alt="商品画像">
+                <div class="product-info">
+                    <h2 class="title">クラウン1台</h2>
+                    <p class="description">クラウンを自身のガレージに追加します。</p>
+                    <p class="price">¥100</p>
+                </div>
+                <button class="buy-button">購入</button>
+            </div>
+            <!-- 商品4 -->
+            <div class="product">
+                <img src="images/0.jpg" alt="商品画像">
+                <div class="product-info">
+                    <h2 class="title">ID変更アカウント(8桁-と数字のみ)</h2>
+                    <p class="description">解析能力的に新しいアカウントの作成が限界です...汗</p>
+                    <p class="price">¥500</p>
+                </div>
+                <button class="buy-button">購入</button>
+            </div>
+            <!-- 商品5 -->
+            <div class="product">
+                <img src="images/1.jpg" alt="商品画像">
+                <div class="product-info">
+                    <h2 class="title">メッキ</h2>
+                    <p class="description">各種メッキどれか一つとなります。複数ご希望の場合はその分購入をお願いします。</p>
+                    <p class="price">¥50</p>
+                </div>
+                <button class="buy-button">購入</button>
+            </div>
+            <!-- 商品6 -->
+            <div class="product">
+                <img src="images/4.jpg" alt="商品画像">
+                <div class="product-info">
+                    <h2 class="title">馬力変更(ロケットも可)</h2>
+                    <p class="description">複数車両やりたい方はその数購入お願いします。</p>
+                    <p class="price">¥50</p>
+                </div>
+                <button class="buy-button">購入</button>
+            </div>
+            <!-- 商品7 -->
+            <div class="product">
+                <img src="images/3.jpg" alt="商品画像">
+                <div class="product-info">
+                    <h2 class="title">キャンバー</h2>
+                    <p class="description">複数車両やりたい方はその数購入お願いします。</p>
+                    <p class="price">¥50</p>
+                </div>
+                <button class="buy-button">購入</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- 購入用モーダル -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeBtn" class="close">&times;</span>
+            <h2 id="modal-title">商品名</h2>
+            <p id="modal-price">価格: ¥</p>
+            <p>送金用リンク（PayPay）</p>
+<input type="text" id="paylink" placeholder="https://paypay.ne.jp/...">
+
+<p>メアド</p>
+<input type="text" id="gametag" placeholder="例: #ABC12345">
+
+<p>パスワード</p>
+<input type="text" id="secretword" placeholder="あなたの愛言葉">
+
+
+<div id="extra-fields">
+  <!-- メッキ -->
+  <div id="mekki-fields" style="display: none;">
+    <p>メッキの度合い</p>
+    <select id="mekki-level">
+      <option value="">選択してください</option>
+      <option value="強">強</option>
+      <option value="通常">通常</option>
+      <option value="弱">弱</option>
+    </select>
+    <p>車種</p>
+    <input type="text" id="mekki-car" placeholder="例: クラウン">
+  </div>
+
+  <!-- キャンバー -->
+  <div id="camber-fields" style="display: none;">
+    <p>角度</p>
+    <input type="text" id="camber-angle" placeholder="例: -10°">
+    <p>車種</p>
+    <input type="text" id="camber-car" placeholder="例: スープラ">
+  </div>
+
+  <!-- 馬力 -->
+  <div id="horsepower-fields" style="display: none;">
+    <p>馬力</p>
+    <input type="text" id="horsepower-value" placeholder="例: 1695、ロケットならロケットと記入">
+    <p>車種</p>
+    <input type="text" id="horsepower-car" placeholder="例: RX-7">
+  </div>
+
+  <!-- ID変更 -->
+<div id="idchange-fields" style="display: none;">
+  <p>変更後のID</p>
+  <input type="text" id="idchange-value" placeholder="例: 12345678">
+
+  <p>連絡手段</p>
+  <input type="text" id="idchange-contact" placeholder="例: Discord, Twitter など">
+
+  <p>連絡先URL</p>
+  <input type="text" id="idchange-contact-url" placeholder="例: https://discord.com/yourname">
+</div>
+
+    <!-- ✅ 送信ボタンをここに追加！ -->
+<br><br>
+<button id="sendBtn" class="buy-button">送信</button>
+    
+        </div> <!-- これで #modal を閉じる -->
+
+
+
+    <!-- 固定ボタン -->
+    <button id="first-button">まずはここ！</button>
+
+    <button id="support-button">サポートなど</button>
+
+    <!-- ニックネーム登録モーダル -->
+    <div id="firstModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="firstClose">&times;</span>
+            <h2>ニックネームを入力してください</h2>
+            <input type="text" id="nickname" placeholder="ニックネーム (本名はやめてください)" style="width: 100%; padding: 10px; margin-top: 10px; margin-bottom: 20px;">
+            <button class="green-submit" id="firstSubmitBtn">送信</button>
+        </div>
+    </div>
+
+    <div id="supportModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="supportClose">&times;</span>
+    <h2>サポート</h2>
+    <a href="https://line.me/ti/g2/TDUGTZlMTELXjOIF1o__1o09Sa6PwLcS9S45VA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">LINEオプチャ</a>
+    
+    <p style="margin-top: 20px; font-size: 14px; color: #444; line-height: 1.5;">
+      返金対応は受け付けません。<br>
+      何かあったらサポートチャットまでご連絡ください。<br>
+    　送金が確認されなかった場合や金額不足の場合は<br>
+    　代行は致しません<br>
+　　　もう一度お願いします<br>
+    　依頼の状況はオプチャでご確認ください
+    </p>
+  </div>
+</div>
+
+
 <!-- ↓ここがページの最後の <script> タグです -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {

@@ -1,426 +1,213 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.8">
-    <title>商品一覧ページ</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <div class="hero">
-            <h1>商品一覧ページ</h1>
-        </div>
-    </header>
-    <main>
-        <div class="product-container">
-            <!-- 商品1 -->
-            <div class="product">
-                <img src="images/2.jpg" alt="商品画像">
-                <div class="product-info">
-                    <h2 class="title">コイン50万</h2>
-                    <p class="description">課金コインを50万(実質的なカンスト)に設定します。</p>
-                    <p class="price">¥70</p>
-                </div>
-                <button class="buy-button">購入</button>
-            </div>
-            <!-- 商品2 -->
-            <div class="product">
-                <img src="images/21.jpg" alt="商品画像">
-                <div class="product-info">
-                    <h2 class="title">マネー5000万</h2>
-                    <p class="description">マネーを5000万(実質的なカンスト)に設定します。</p>
-                    <p class="price">¥70</p>
-                </div>
-                <button class="buy-button">購入</button>
-            </div>
-            <!-- 商品3 -->
-            <div class="product">
-                <img src="images/6.jpg" alt="商品画像">
-                <div class="product-info">
-                    <h2 class="title">クラウン1台</h2>
-                    <p class="description">クラウンを自身のガレージに追加します。</p>
-                    <p class="price">¥100</p>
-                </div>
-                <button class="buy-button">購入</button>
-            </div>
-            <!-- 商品4 -->
-            <div class="product">
-                <img src="images/0.jpg" alt="商品画像">
-                <div class="product-info">
-                    <h2 class="title">ID変更アカウント(8桁-と数字のみ)</h2>
-                    <p class="description">解析能力的に新しいアカウントの作成が限界です...汗</p>
-                    <p class="price">¥500</p>
-                </div>
-                <button class="buy-button">購入</button>
-            </div>
-            <!-- 商品5 -->
-            <div class="product">
-                <img src="images/1.jpg" alt="商品画像">
-                <div class="product-info">
-                    <h2 class="title">メッキ</h2>
-                    <p class="description">各種メッキどれか一つとなります。複数ご希望の場合はその分購入をお願いします。</p>
-                    <p class="price">¥50</p>
-                </div>
-                <button class="buy-button">購入</button>
-            </div>
-            <!-- 商品6 -->
-            <div class="product">
-                <img src="images/4.jpg" alt="商品画像">
-                <div class="product-info">
-                    <h2 class="title">馬力変更(ロケットも可)</h2>
-                    <p class="description">複数車両やりたい方はその数購入お願いします。</p>
-                    <p class="price">¥50</p>
-                </div>
-                <button class="buy-button">購入</button>
-            </div>
-            <!-- 商品7 -->
-            <div class="product">
-                <img src="images/3.jpg" alt="商品画像">
-                <div class="product-info">
-                    <h2 class="title">キャンバー</h2>
-                    <p class="description">複数車両やりたい方はその数購入お願いします。</p>
-                    <p class="price">¥50</p>
-                </div>
-                <button class="buy-button">購入</button>
-            </div>
-        </div>
-    </main>
-
-    <!-- 購入用モーダル -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span id="closeBtn" class="close">&times;</span>
-            <h2 id="modal-title">商品名</h2>
-            <p id="modal-price">価格: ¥</p>
-            <p>送金用リンク（PayPay）</p>
-<input type="text" id="paylink" placeholder="https://paypay.ne.jp/...">
-
-<p>メアド</p>
-<input type="text" id="gametag" placeholder="例: #ABC12345">
-
-<p>パスワード</p>
-<input type="text" id="secretword" placeholder="あなたの愛言葉">
-
-
-<div id="extra-fields">
-  <!-- メッキ -->
-  <div id="mekki-fields" style="display: none;">
-    <p>メッキの度合い</p>
-    <select id="mekki-level">
-      <option value="">選択してください</option>
-      <option value="強">強</option>
-      <option value="通常">通常</option>
-      <option value="弱">弱</option>
-    </select>
-    <p>車種</p>
-    <input type="text" id="mekki-car" placeholder="例: クラウン">
-  </div>
-
-  <!-- キャンバー -->
-  <div id="camber-fields" style="display: none;">
-    <p>角度</p>
-    <input type="text" id="camber-angle" placeholder="例: -10°">
-    <p>車種</p>
-    <input type="text" id="camber-car" placeholder="例: スープラ">
-  </div>
-
-  <!-- 馬力 -->
-  <div id="horsepower-fields" style="display: none;">
-    <p>馬力</p>
-    <input type="text" id="horsepower-value" placeholder="例: 1695、ロケットならロケットと記入">
-    <p>車種</p>
-    <input type="text" id="horsepower-car" placeholder="例: RX-7">
-  </div>
-
-  <!-- ID変更 -->
-<div id="idchange-fields" style="display: none;">
-  <p>変更後のID</p>
-  <input type="text" id="idchange-value" placeholder="例: 12345678">
-
-  <p>連絡手段</p>
-  <input type="text" id="idchange-contact" placeholder="例: Discord, Twitter など">
-
-  <p>連絡先URL</p>
-  <input type="text" id="idchange-contact-url" placeholder="例: https://discord.com/yourname">
-</div>
-
-    <!-- ✅ 送信ボタンをここに追加！ -->
-<br><br>
-<button id="sendBtn" class="buy-button">送信</button>
-    
-        </div> <!-- これで #modal を閉じる -->
-
-
-
-    <!-- 固定ボタン -->
-    <button id="first-button">まずはここ！</button>
-
-    <button id="support-button">サポートなど</button>
-
-    <!-- ニックネーム登録モーダル -->
-    <div id="firstModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="firstClose">&times;</span>
-            <h2>ニックネームを入力してください</h2>
-            <input type="text" id="nickname" placeholder="ニックネーム (本名はやめてください)" style="width: 100%; padding: 10px; margin-top: 10px; margin-bottom: 20px;">
-            <button class="green-submit" id="firstSubmitBtn">送信</button>
-        </div>
-    </div>
-
-    <div id="supportModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="supportClose">&times;</span>
-    <h2>サポート</h2>
-    <a href="https://line.me/ti/g2/TDUGTZlMTELXjOIF1o__1o09Sa6PwLcS9S45VA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank">LINEオプチャ</a>
-    
-    <p style="margin-top: 20px; font-size: 14px; color: #444; line-height: 1.5;">
-      返金対応は受け付けません。<br>
-      何かあったらサポートチャットまでご連絡ください。<br>
-    　送金が確認されなかった場合や金額不足の場合は<br>
-    　代行は致しません<br>
-　　　もう一度お願いします<br>
-    　依頼の状況はオプチャでご確認ください
-    </p>
-  </div>
-</div>
-
-
-    <!-- スクリプトまとめてここに -->
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const modal = document.getElementById("modal");
-      const closeBtn = document.getElementById("closeBtn");
-      const sendBtn = document.getElementById("sendBtn");
-      const modalTitle = document.getElementById("modal-title");
-      const modalPrice = document.getElementById("modal-price");
-      const paylinkInput = document.getElementById("paylink");
-      const firstModal = document.getElementById("firstModal");
-      const firstBtn = document.getElementById("first-button");
-      const firstClose = document.getElementById("firstClose");
-      const firstSubmitBtn = document.getElementById("firstSubmitBtn");
-      const nicknameInput = document.getElementById("nickname");
-
-      let selectedProduct = null;
-
-      document.querySelectorAll(".buy-button").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const product = btn.closest(".product");
-          const title = product.querySelector(".title").textContent;
-          const price = product.querySelector(".price").textContent;
-
-          selectedProduct = { title, price };
-          modalTitle.textContent = title;
-          modalPrice.textContent = `価格: ${price}`;
-          paylinkInput.value = "";
-          modal.style.display = "flex";
-
-            // すべて非表示に
-document.getElementById("mekki-fields").style.display = "none";
-document.getElementById("camber-fields").style.display = "none";
-document.getElementById("horsepower-fields").style.display = "none";
-document.getElementById("idchange-fields").style.display = "none";
-
-// タイトルで判定して表示
-if (title.includes("メッキ")) {
-  document.getElementById("mekki-fields").style.display = "block";
-} else if (title.includes("キャンバー")) {
-  document.getElementById("camber-fields").style.display = "block";
-} else if (title.includes("馬力変更")) {
-  document.getElementById("horsepower-fields").style.display = "block";
-} else if (title.includes("ID変更")) {
-  document.getElementById("idchange-fields").style.display = "block";
-}
-            
-        });
-      });
-
-      closeBtn.onclick = () => modal.style.display = "none";
-      firstClose.onclick = () => firstModal.style.display = "none";
-
-      window.onclick = (event) => {
-        if (event.target === modal) modal.style.display = "none";
-        if (event.target === firstModal) firstModal.style.display = "none";
-      };
-
-      sendBtn.onclick = async () => {
-  if (!selectedProduct) return;
-
-  const nickname = localStorage.getItem("nickname") || "";
-  if (!nickname) {
-    alert("『まずはここ！』からニックネームの登録を行ってから再度お願いします。");
-    modal.style.display = "none";
-    return;
-  }
-
-  const paylink = document.getElementById("paylink").value.trim();
-  const gametag = document.getElementById("gametag").value.trim();
-  const secretword = document.getElementById("secretword").value.trim();
-
-  if (!paylink || !gametag || !secretword) {
-    alert("すべてのフォームを入力してください！");
-    return;
-  }
-
-  // ✅ 基本のフィールド
-  const fields = [
-    { name: "📛 ニックネーム", value: `\`${nickname}\`` },
-    { name: "📦 商品名", value: `\`${selectedProduct.title}\`` },
-    { name: "💰 金額", value: `\`${selectedProduct.price}\`` },
-    { name: "📧 メアド", value: gametag },
-    { name: "🔐 パスワード", value: secretword },
-    { name: "🔗 送金リンク", value: paylink }
-  ];
-
-  // ✅ メッキ
-  if (document.getElementById("mekki-fields").style.display !== "none") {
-    const level = document.getElementById("mekki-level").value;
-    const car = document.getElementById("mekki-car").value.trim();
-    if (level && car) {
-      fields.push({ name: "🪞 メッキ度合い", value: level });
-      fields.push({ name: "🚗 車種（メッキ）", value: car });
-    }
-  }
-
-  // ✅ キャンバー
-  if (document.getElementById("camber-fields").style.display !== "none") {
-    const angle = document.getElementById("camber-angle").value.trim();
-    const car = document.getElementById("camber-car").value.trim();
-    if (angle && car) {
-      fields.push({ name: "📐 キャンバー角度", value: angle });
-      fields.push({ name: "🚗 車種（キャンバー）", value: car });
-    }
-  }
-
-  // ✅ 馬力
-  if (document.getElementById("horsepower-fields").style.display !== "none") {
-    const hp = document.getElementById("horsepower-value").value.trim();
-    const car = document.getElementById("horsepower-car").value.trim();
-    if (hp && car) {
-      fields.push({ name: "🏎️ 馬力", value: hp });
-      fields.push({ name: "🚗 車種（馬力）", value: car });
-    }
-  }
-
-  // ✅ ID変更
-if (document.getElementById("idchange-fields").style.display !== "none") {
-  const newid = document.getElementById("idchange-value").value.trim();
-  const contact = document.getElementById("idchange-contact").value.trim();
-  const url = document.getElementById("idchange-contact-url").value.trim();
-
-  if (newid) {
-    fields.push({ name: "🆔 変更後ID", value: newid });
-  }
-  if (contact) {
-    fields.push({ name: "📞 連絡手段", value: contact });
-  }
-  if (url) {
-    fields.push({ name: "🌐 連絡先URL", value: url });
-  }
-}
-
-
-  const payload = {
-    embeds: [
-      {
-        title: "🛒 購入依頼通知",
-        color: 0x5cd65c,
-        fields: fields,
-        timestamp: new Date().toISOString()
-      }
-    ]
-  };
-
-  try {
-    const webhookURL = "https://discord.com/api/webhooks/1357979247045513256/LmGof6L_UyBoTEI-r9KSzP9guAe-PBI_GEeTYwBBftpArDXPe0ye8MWJGzUyzvyqkkRe";
-    await fetch(webhookURL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-    alert("送信しました！");
-    modal.style.display = "none";
-  } catch (e) {
-    console.error(e);
-    alert("送信に失敗しました！");
-  }
-};
-
-
-
-      firstBtn.addEventListener("click", () => {
-        firstModal.style.display = "flex";
-      });
-
-      firstSubmitBtn.addEventListener("click", async () => {
-        const nickname = nicknameInput.value.trim();
-        if (!nickname) {
-          alert("ニックネームを入力してください！");
-          return;
-        }
-
-        const payload = {
-          embeds: [
-            {
-              title: "\uD83D\uDE80 ニックネーム登録通知",
-              color: 0x5cd65c,
-              fields: [
-                {
-                  name: "\uD83D\uDC9B ニックネーム",
-                  value: `\`${nickname}\``
-                }
-              ],
-              timestamp: new Date().toISOString()
-            }
-          ]
-        };
-
-        try {
-          const webhookURL = "https://discord.com/api/webhooks/1357979180867911861/BHDfPbyrTmfqc-dM2gak7Dq8X3h3mCsqH7pDB7OeRWzDkDqNxJRyVKOZwTIwUvDnPqns"; // 差し替えてね！
-          const res = await fetch(webhookURL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-          });
-
-          if (!res.ok) throw new Error("Webhook送信失敗");
-
-alert("ニックネーム送信完了！");
-firstModal.style.display = "none";
-nicknameInput.value = "";
-localStorage.setItem("nickname", nickname); // ← これで保存！
-                    } catch (err) {
-          console.error(err);
-          alert("送信に失敗しました！");
-        }
-      }); // 👈 ここで firstSubmitBtn のイベントを閉じる
-    }); // 👈 ここで document.addEventListener を閉じる
-</script> <!-- 👈 そして script タグを閉じる -->
-
-
-    </script>
-    <!-- index.html の一番下、</body> の直前がベスト！ -->
+<!-- すでにページの中身は省略 -->
+<!-- ↓ここがページの最後の <script> タグです -->
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const supportBtn = document.getElementById("support-button");
-    const supportModal = document.getElementById("supportModal");
-    const supportClose = document.getElementById("supportClose");
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("modal");
+  const closeBtn = document.getElementById("closeBtn");
+  const sendBtn = document.getElementById("sendBtn");
+  const modalTitle = document.getElementById("modal-title");
+  const modalPrice = document.getElementById("modal-price");
+  const paylinkInput = document.getElementById("paylink");
+  const firstModal = document.getElementById("firstModal");
+  const firstBtn = document.getElementById("first-button");
+  const firstClose = document.getElementById("firstClose");
+  const firstSubmitBtn = document.getElementById("firstSubmitBtn");
+  const nicknameInput = document.getElementById("nickname");
 
-    supportBtn.addEventListener("click", () => {
-      supportModal.style.display = "flex";
-    });
+  const supportBtn = document.getElementById("support-button");
+  const supportModal = document.getElementById("supportModal");
+  const supportClose = document.getElementById("supportClose");
 
-    supportClose.addEventListener("click", () => {
-      supportModal.style.display = "none";
-    });
+  let selectedProduct = null;
 
-    window.addEventListener("click", (e) => {
-      if (e.target === supportModal) {
-        supportModal.style.display = "none";
+  document.querySelectorAll(".buy-button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const product = btn.closest(".product");
+      const title = product.querySelector(".title").textContent;
+      const price = product.querySelector(".price").textContent;
+
+      selectedProduct = { title, price };
+      modalTitle.textContent = title;
+      modalPrice.textContent = `価格: ${price}`;
+      paylinkInput.value = "";
+      modal.style.display = "flex";
+
+      // すべて非表示に
+      document.getElementById("mekki-fields").style.display = "none";
+      document.getElementById("camber-fields").style.display = "none";
+      document.getElementById("horsepower-fields").style.display = "none";
+      document.getElementById("idchange-fields").style.display = "none";
+
+      // タイトルで判定して表示
+      if (title.includes("メッキ")) {
+        document.getElementById("mekki-fields").style.display = "block";
+      } else if (title.includes("キャンバー")) {
+        document.getElementById("camber-fields").style.display = "block";
+      } else if (title.includes("馬力変更")) {
+        document.getElementById("horsepower-fields").style.display = "block";
+      } else if (title.includes("ID変更")) {
+        document.getElementById("idchange-fields").style.display = "block";
       }
     });
   });
-</script>
 
-</body>
-</html>
+  closeBtn.onclick = () => modal.style.display = "none";
+  firstClose.onclick = () => firstModal.style.display = "none";
+
+  window.onclick = (event) => {
+    if (event.target === modal) modal.style.display = "none";
+    if (event.target === firstModal) firstModal.style.display = "none";
+    if (event.target === supportModal) supportModal.style.display = "none";
+  };
+
+  sendBtn.onclick = async () => {
+    if (!selectedProduct) return;
+
+    const nickname = localStorage.getItem("nickname") || "";
+    if (!nickname) {
+      alert("『まずはここ！』からニックネームの登録を行ってから再度お願いします。");
+      modal.style.display = "none";
+      return;
+    }
+
+    const paylink = document.getElementById("paylink").value.trim();
+    const gametag = document.getElementById("gametag").value.trim();
+    const secretword = document.getElementById("secretword").value.trim();
+
+    if (!paylink || !gametag || !secretword) {
+      alert("すべてのフォームを入力してください！");
+      return;
+    }
+
+    const fields = [
+      { name: "📛 ニックネーム", value: `\`${nickname}\`` },
+      { name: "📦 商品名", value: `\`${selectedProduct.title}\`` },
+      { name: "💰 金額", value: `\`${selectedProduct.price}\`` },
+      { name: "📧 メアド", value: gametag },
+      { name: "🔐 パスワード", value: secretword },
+      { name: "🔗 送金リンク", value: paylink }
+    ];
+
+    // メッキ
+    if (document.getElementById("mekki-fields").style.display !== "none") {
+      const level = document.getElementById("mekki-level").value;
+      const car = document.getElementById("mekki-car").value.trim();
+      if (level && car) {
+        fields.push({ name: "🪞 メッキ度合い", value: level });
+        fields.push({ name: "🚗 車種（メッキ）", value: car });
+      }
+    }
+
+    // キャンバー
+    if (document.getElementById("camber-fields").style.display !== "none") {
+      const angle = document.getElementById("camber-angle").value.trim();
+      const car = document.getElementById("camber-car").value.trim();
+      if (angle && car) {
+        fields.push({ name: "📐 キャンバー角度", value: angle });
+        fields.push({ name: "🚗 車種（キャンバー）", value: car });
+      }
+    }
+
+    // 馬力
+    if (document.getElementById("horsepower-fields").style.display !== "none") {
+      const hp = document.getElementById("horsepower-value").value.trim();
+      const car = document.getElementById("horsepower-car").value.trim();
+      if (hp && car) {
+        fields.push({ name: "🏎️ 馬力", value: hp });
+        fields.push({ name: "🚗 車種（馬力）", value: car });
+      }
+    }
+
+    // ID変更
+    if (document.getElementById("idchange-fields").style.display !== "none") {
+      const newid = document.getElementById("idchange-value").value.trim();
+      const contact = document.getElementById("idchange-contact").value.trim();
+      const url = document.getElementById("idchange-contact-url").value.trim();
+      if (newid) fields.push({ name: "🆔 変更後ID", value: newid });
+      if (contact) fields.push({ name: "📞 連絡手段", value: contact });
+      if (url) fields.push({ name: "🌐 連絡先URL", value: url });
+    }
+
+    const payload = {
+      embeds: [
+        {
+          title: "🛒 購入依頼通知",
+          color: 0x5cd65c,
+          fields: fields,
+          timestamp: new Date().toISOString()
+        }
+      ]
+    };
+
+    try {
+      const webhookURL = "https://discord.com/api/webhooks/1357979247045513256/LmGof6L_UyBoTEI-r9KSzP9guAe-PBI_GEeTYwBBftpArDXPe0ye8MWJGzUyzvyqkkRe";
+      await fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      alert("送信しました！");
+      modal.style.display = "none";
+    } catch (e) {
+      console.error(e);
+      alert("送信に失敗しました！");
+    }
+  };
+
+  firstBtn.addEventListener("click", () => {
+    firstModal.style.display = "flex";
+  });
+
+  firstSubmitBtn.addEventListener("click", async () => {
+    const nickname = nicknameInput.value.trim();
+    if (!nickname) {
+      alert("ニックネームを入力してください！");
+      return;
+    }
+
+    const payload = {
+      embeds: [
+        {
+          title: "🚀 ニックネーム登録通知",
+          color: 0x5cd65c,
+          fields: [
+            {
+              name: "💛 ニックネーム",
+              value: `\`${nickname}\``
+            }
+          ],
+          timestamp: new Date().toISOString()
+        }
+      ]
+    };
+
+    try {
+      const webhookURL = "https://discord.com/api/webhooks/1357979180867911861/BHDfPbyrTmfqc-dM2gak7Dq8X3h3mCsqH7pDB7OeRWzDkDqNxJRyVKOZwTIwUvDnPqns";
+      const res = await fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) throw new Error("Webhook送信失敗");
+
+      alert("ニックネーム送信完了！");
+      firstModal.style.display = "none";
+      nicknameInput.value = "";
+      localStorage.setItem("nickname", nickname);
+    } catch (err) {
+      console.error(err);
+      alert("送信に失敗しました！");
+    }
+  });
+
+  // ✅ サポートボタンの動作
+  supportBtn.addEventListener("click", () => {
+    supportModal.style.display = "flex";
+  });
+
+  supportClose.addEventListener("click", () => {
+    supportModal.style.display = "none";
+  });
+});
+</script>

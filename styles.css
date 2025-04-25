@@ -308,6 +308,7 @@ body {
 
 .faq-section p {
   margin-top: 2px;
+　margin-bottom: 0; /* ←これを追加するのがオススメ */
   color: #555;
   font-size: 13px;
   line-height: 1.4;

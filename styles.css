@@ -274,3 +274,45 @@ body {
   cursor: pointer;
 }
 
+.faq-section {
+  background-color: #fff;
+  padding: 20px;
+  margin: 30px auto;
+  border-radius: 8px;
+  max-width: 800px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.faq-section h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.faq-section details {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.faq-section summary {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.faq-section p {
+  margin: 5px 0 10px 20px;
+  color: #555;
+}
+
+.more-faq {
+  display: block;
+  margin: 15px auto 0;
+  padding: 10px 20px;
+  background-color: #aad;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+

@@ -338,3 +338,38 @@ body {
   transform: scale(1.05);
 }
 
+.faq-section {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px 25px;
+  background: rgba(255, 255, 255, 0.9); /* 背景ちょい白め＋透明感 */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* ふんわり影 */
+  text-align: center;
+}
+
+.faq-section details {
+  margin-bottom: 12px;
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.more-faq {
+  margin: 20px auto 0;
+  padding: 10px 24px;
+  background: #48c774;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: inline-block;
+}
+
+.more-faq:hover {
+  background: #3da163;
+}

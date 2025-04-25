@@ -275,60 +275,53 @@ body {
 }
 
 .faq-section {
-  max-width: 800px;
-  margin: 60px auto 40px;
-  padding: 30px 25px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(4px);
+  max-width: 700px;
+  margin: 40px auto 30px;
+  padding: 20px 20px;
+  background: rgba(255, 255, 255, 0.75); /* ← 半透明を少し強く */
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* 少し軽めの影 */
+  backdrop-filter: blur(6px); /* ← 背景ぼかし強め */
   text-align: center;
 }
 
 .faq-section h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 26px;
+  margin-bottom: 18px;
+  font-size: 22px;
   color: #222;
 }
 
 .faq-section details {
-  margin-bottom: 12px;
-  padding: 12px 16px;
+  margin-bottom: 10px;
+  padding: 10px 14px;
   background: #ffffff;
-  border-radius: 10px;
   border: 1px solid #ddd;
-  cursor: pointer;
+  border-radius: 8px;
   text-align: left;
-  transition: background 0.2s;
-}
-
-.faq-section details:hover {
-  background: #f0f0f0;
 }
 
 .faq-section summary {
   font-weight: bold;
   color: #333;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .faq-section p {
-  margin-top: 10px;
+  margin-top: 8px;
   color: #555;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .more-faq {
   display: inline-block;
-  margin: 25px auto 0;
-  padding: 12px 28px;
+  margin-top: 15px;
+  padding: 8px 20px;
   background: #48c774;
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 15px;
+  border-radius: 6px;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;

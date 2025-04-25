@@ -275,44 +275,52 @@ body {
 }
 
 .faq-section {
-  background-color: #fff;
-  padding: 20px;
-  margin: 30px auto;
-  border-radius: 8px;
   max-width: 800px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin: 40px auto;
+  padding: 20px;
+  background: #f8f8ff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .faq-section h2 {
-  margin-bottom: 15px;
-  font-size: 24px;
   text-align: center;
+  margin-bottom: 20px;
+  color: #333;
 }
 
 .faq-section details {
   margin-bottom: 10px;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #ccc;
   cursor: pointer;
 }
 
 .faq-section summary {
   font-weight: bold;
-  font-size: 16px;
+  color: #444;
 }
 
 .faq-section p {
-  margin: 5px 0 10px 20px;
+  margin-top: 8px;
   color: #555;
 }
 
 .more-faq {
   display: block;
-  margin: 15px auto 0;
+  margin: 20px auto 0;
   padding: 10px 20px;
-  background-color: #aad;
+  background: #48c774;
   color: white;
   border: none;
   border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
+.more-faq:hover {
+  background: #3da163;
+}

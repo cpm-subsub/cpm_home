@@ -277,46 +277,50 @@ body {
 .faq-section {
   max-width: 800px;
   margin: 40px auto;
-  padding: 20px;
-  background: #f8f8ff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.7); /* ← 半透明の白っぽい背景 */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 
 .faq-section h2 {
   text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+  margin-bottom: 24px;
+  font-size: 24px;
+  color: #222;
 }
 
 .faq-section details {
-  margin-bottom: 10px;
-  padding: 10px;
-  background: #ffffff;
-  border-radius: 6px;
+  margin-bottom: 15px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 8px;
   border: 1px solid #ccc;
   cursor: pointer;
 }
 
 .faq-section summary {
   font-weight: bold;
-  color: #444;
+  color: #333;
+  font-size: 16px;
 }
 
 .faq-section p {
-  margin-top: 8px;
+  margin-top: 10px;
   color: #555;
+  font-size: 15px;
 }
 
 .more-faq {
   display: block;
-  margin: 20px auto 0;
-  padding: 10px 20px;
+  margin: 30px auto 0;
+  padding: 10px 24px;
   background: #48c774;
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: 8px;
+  font-size: 15px;
   cursor: pointer;
   transition: background 0.2s;
 }
